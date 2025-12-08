@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="ta"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Siruvar Neethi Kathaigal - Tamil Kids Stories</title><!-- Favicon and Branding --><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta name="theme-color" content="#11224E"><meta name="msapplication-TileColor" content="#11224E"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="TamilKathai"><!-- Font Preload for faster loading --><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'"><noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript><script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"TamilKathai","url":"https://tamilkathai.in","logo":"https://tamilkathai.in/logo.svg","description":"A collection of wonderful Tamil stories for children"}</script> <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"காதல் கதைகள் - Love Stories | TamilKathai","description":"Read the best Love Stories (காதல் கதைகள்) in Tamil.","url":"https://tamilkathai.in/kadhal-kathaigal/","mainEntity":{"@type":"ItemList","itemListElement":[]}}</script> <!-- 
+  ThemeManager: A centralized script to handle light/dark mode.
+  Placed in <head> to prevent FOUC.
+--><script>
+    (function () {
+        // 1. Core Logic: specific preference > system preference
+        function getTheme() {
+            if (
+                typeof localStorage !== "undefined" &&
+                localStorage.getItem("theme")
+            ) {
+                return localStorage.getItem("theme");
+            }
+            // Default to light mode as requested
+            return "light";
+        }
+
+        // 2. Apply Theme
+        function setTheme(theme) {
+            if (theme === "dark") {
+                document.documentElement.classList.add("dark");
+            } else {
+                document.documentElement.classList.remove("dark");
+            }
+            window.localStorage.setItem("theme", theme);
+
+            // Dispatch a custom event so other components (like toggles) can update their UI
+            // regardless of where they are in the DOM or when they loaded.
+            window.dispatchEvent(
+                new CustomEvent("theme-change", { detail: { theme } }),
+            );
+        }
+
+        // 3. Initialize
+        setTheme(getTheme());
+
+        // 4. Expose Global API
+        window.toggleTheme = function () {
+            const current = getTheme();
+            const next = current === "dark" ? "light" : "dark";
+            setTheme(next);
+        };
+
+        // 5. Listen for System Changes (if no manual override)
+        window
+            .matchMedia("(prefers-color-scheme: dark)")
+            .addEventListener("change", (e) => {
+                if (!localStorage.getItem("theme")) {
+                    setTheme(e.matches ? "dark" : "light");
+                }
+            });
+    })();
+</script><link rel="stylesheet" href="/_astro/about.CT6vSJ4b.css"></head> <body class="bg-[var(--color-bg)] text-[var(--color-text-main)] antialiased selection:bg-[#F87B1B] selection:text-white transition-colors duration-300 overflow-x-hidden">   <!-- Navigation matching Tamil Story design with dark mode support --><nav class="fixed top-0 w-full z-50 bg-[var(--color-bg)]/80 backdrop-blur-md border-b border-[var(--color-border)]"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="flex justify-between items-center h-16"> <!-- Logo --> <a href="/" class="flex-shrink-0 flex items-center gap-2 cursor-pointer group"> <img src="/logo.svg" alt="Tamil Story Logo" class="w-8 h-8 group-hover:scale-110 transition-transform duration-300"> <span class="font-semibold text-lg tracking-tight text-[var(--color-text-main)]">கதைகள்</span> </a> <!-- Desktop Menu --> <div class="hidden md:flex items-center space-x-8"> <a href="/" class="text-sm font-medium text-[var(--color-text-main)] hover:text-[var(--color-accent)] transition-colors">முகப்பு</a> <a href="/blog" class="text-sm font-medium text-[var(--color-text-main)] hover:text-[var(--color-accent)] transition-colors">கதைகள்</a> <a href="/about" class="text-sm font-medium text-[var(--color-text-main)] hover:text-[var(--color-accent)] transition-colors">பற்றி</a> </div> <!-- Actions --> <div class="flex items-center gap-4"> <button class="p-2 text-[var(--color-text-main)] hover:bg-[var(--color-bg)] rounded-full transition-all" aria-label="Search"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg> </button> <a href="#subscribe" class="hidden sm:flex px-4 py-2 bg-[var(--color-primary)] text-[var(--color-bg)] text-xs font-medium rounded-full hover:bg-[var(--color-accent)] transition-colors duration-300 items-center gap-2"> <span>பதிவு செய்</span> <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg> </a> <!-- Mobile Menu Button --> <button class="md:hidden p-2 text-[var(--color-text-main)]" id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="menu-icon" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="close-icon hidden" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg> </button> </div> </div> <!-- Mobile Menu --> <div class="mobile-menu hidden md:hidden pb-4 overflow-hidden transition-all duration-300 ease-in-out max-h-0" id="mobile-menu"> <div class="flex flex-col space-y-2 pt-2"> <a href="/" class="px-4 py-2 text-sm font-medium text-[var(--color-text-main)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg)] rounded-lg transition-colors">முகப்பு</a> <a href="/blog" class="px-4 py-2 text-sm font-medium text-[var(--color-text-main)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg)] rounded-lg transition-colors">கதைகள்</a> <a href="/about" class="px-4 py-2 text-sm font-medium text-[var(--color-text-main)] hover:text-[var(--color-accent)] hover:bg-[var(--color-bg)] rounded-lg transition-colors">பற்றி</a> </div> </div> </div> </nav> <script type="module">const s=document.getElementById("mobile-menu-btn"),e=document.getElementById("mobile-menu"),t=s?.querySelector(".menu-icon"),n=s?.querySelector(".close-icon");s?.addEventListener("click",()=>{e?.classList.contains("max-h-0")?(e?.classList.remove("max-h-0","hidden"),e?.classList.add("max-h-64"),t?.classList.add("hidden"),n?.classList.remove("hidden"),s?.setAttribute("aria-expanded","true")):(e?.classList.add("max-h-0"),e?.classList.remove("max-h-64"),t?.classList.remove("hidden"),n?.classList.add("hidden"),s?.setAttribute("aria-expanded","false"),setTimeout(()=>{e?.classList.contains("max-h-0")&&e?.classList.add("hidden")},300))});</script> <main class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16"> <div class="mb-12 text-center"> <h1 class="text-3xl md:text-5xl font-bold text-[#11224E] mb-4"> காதல் கதைகள் </h1> <p class="text-lg md:text-xl text-[#11224E]/60">Love Stories</p> <div class="h-1 w-24 bg-[#F87B1B] mx-auto mt-6 rounded-full"></div> </div> <div class="text-center py-20 bg-white rounded-3xl border border-[#11224E]/5"> <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#11224E]/5 mb-6"> <span class="iconify text-[#11224E]/40" data-icon="lucide:book-open" data-width="32" data-height="32"></span> </div> <h3 class="text-xl font-medium text-[#11224E] mb-2">
+No stories found
+</h3> <p class="text-[#11224E]/60">
+Check back later for new stories in this category.
+</p> </div> </main> <!-- Footer matching Tamil Story design with dark mode support --><footer class="bg-[var(--color-bg)] border-t border-[var(--color-border)] pt-16 pb-8"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12"> <div class="space-y-4"> <div class="flex items-center gap-2"> <img src="/logo.svg" alt="Tamil Story Logo" class="w-6 h-6 hover:scale-110 transition-transform duration-300"> <span class="font-semibold text-base tracking-tight text-[var(--color-text-main)]">கதைகள்</span> </div> <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">
+குழந்தைகளுக்கான நற்பண்புகள் மற்றும் நீதி போதனைகளை கதைகள்
+					மூலம் கொண்டு சேர்ப்பதே எங்கள் நோக்கம்.
+</p> </div> <div> <h4 class="font-semibold text-[var(--color-text-main)] mb-4 text-sm">
+பிரிவுகள்
+</h4> <ul class="space-y-3 text-sm text-[var(--color-text-muted)]"> <li> <a href="/blog" class="hover:text-[var(--color-accent)] transition-colors">நீதி கதைகள்</a> </li> <li> <a href="/blog" class="hover:text-[var(--color-accent)] transition-colors">விலங்கு கதைகள்</a> </li> <li> <a href="/blog" class="hover:text-[var(--color-accent)] transition-colors">தெனாலிராமன்</a> </li> <li> <a href="/blog" class="hover:text-[var(--color-accent)] transition-colors">புராண கதைகள்</a> </li> </ul> </div> <div> <h4 class="font-semibold text-[var(--color-text-main)] mb-4 text-sm">
+நிறுவனம்
+</h4> <ul class="space-y-3 text-sm text-[var(--color-text-muted)]"> <li> <a href="/about" class="hover:text-[var(--color-accent)] transition-colors">எங்களை பற்றி</a> </li> <li> <a href="/contact" class="hover:text-[var(--color-accent)] transition-colors">Contact Us</a> </li> <li> <a href="/terms-conditions" class="hover:text-[var(--color-accent)] transition-colors">Terms & Conditions</a> </li> <li> <a href="/privacy-policy" class="hover:text-[var(--color-accent)] transition-colors">Privacy Policy</a> </li> <li> <a href="/disclaimer" class="hover:text-[var(--color-accent)] transition-colors">Disclaimer</a> </li> </ul> </div> <div> <h4 class="font-semibold text-[var(--color-text-main)] mb-4 text-sm">
+சமூக ஊடகம்
+</h4> <div class="flex gap-4"> <a href="#" class="w-8 h-8 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-text-main)] hover:bg-[var(--color-accent)] hover:text-white transition-all" aria-label="Facebook"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg> </a> <a href="#" class="w-8 h-8 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-text-main)] hover:bg-[var(--color-accent)] hover:text-white transition-all" aria-label="Twitter"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class aria-hidden="true"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg> </a> <a href="#" class="w-8 h-8 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-text-main)] hover:bg-[var(--color-accent)] hover:text-white transition-all" aria-label="Instagram"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg> </a> </div> </div> </div> <div class="pt-8 border-t border-[var(--color-border)] flex flex-col sm:flex-row justify-between items-center gap-4"> <p class="text-xs text-[var(--color-text-muted)]">
+© 2025 Siruvar Kathaigal. All rights reserved.
+</p> <div class="flex items-center gap-2 text-xs text-[var(--color-text-muted)]"> <span>Made with</span> <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-[var(--color-accent)]" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> <span>for kids</span> </div> </div> </div> </footer>  </body></html>

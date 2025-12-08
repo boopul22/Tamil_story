@@ -1,15 +1,23 @@
 ---
-import { type CollectionEntry, getCollection, render } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
+import { type CollectionEntry, getCollection, render } from "astro:content";
+import BlogPost from "../../layouts/BlogPost.astro";
+
+export const prerender = true;
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
+	const now = new Date();
+	now.setHours(23, 59, 59, 999); // Include posts from today
+
+	const posts = (await getCollection("blog")).filter(
+		(post) => !post.data.draft && post.data.pubDate <= now,
+	);
+
 	return posts.map((post) => ({
 		params: { slug: post.id },
 		props: post,
 	}));
 }
-type Props = CollectionEntry<'blog'>;
+type Props = CollectionEntry<"blog">;
 
 const post = Astro.props;
 const { Content } = await render(post);

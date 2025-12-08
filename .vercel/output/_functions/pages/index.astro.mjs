@@ -1,0 +1,70 @@
+import { c as createComponent, r as renderComponent, a as renderTemplate, F as Fragment, u as unescapeHTML, m as maybeRenderHead, b as addAttribute } from '../chunks/astro/server_CH8WiV83.mjs';
+import 'piccolore';
+import { $ as $$Image } from '../chunks/_astro_assets_d9S2bl-1.mjs';
+import { g as getCollection } from '../chunks/_astro_content_BediJpj7.mjs';
+import { $ as $$BaseLayout, a as $$Header, b as $$Icon, c as $$Footer } from '../chunks/Header_BLK8Y6cf.mjs';
+import { $ as $$FormattedDate } from '../chunks/FormattedDate_B7aFh0jy.mjs';
+import { S as SITE_URL, b as SITE_TITLE } from '../chunks/consts_DCvku9s5.mjs';
+export { renderers } from '../renderers.mjs';
+
+var __freeze = Object.freeze;
+var __defProp = Object.defineProperty;
+var __template = (cooked, raw) => __freeze(__defProp(cooked, "raw", { value: __freeze(cooked.slice()) }));
+var _a;
+const $$Index = createComponent(async ($$result, $$props, $$slots) => {
+  const posts = (await getCollection("blog")).sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+  const featuredPost = posts[0];
+  const gridPosts = posts.slice(0, 6);
+  const websiteSchema = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_TITLE,
+    url: SITE_URL,
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE_URL}/search?q={search_term_string}`
+      },
+      "query-input": "required name=search_term_string"
+    }
+  });
+  return renderTemplate`${renderComponent($$result, "BaseLayout", $$BaseLayout, {}, { "default": async ($$result2) => renderTemplate`  ${renderComponent($$result2, "Header", $$Header, {})} ${maybeRenderHead()}<main class="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"> <!-- Hero Section - Features the most recent post --> ${featuredPost && renderTemplate`<section class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 lg:mb-20"> <div class="order-2 lg:order-1 space-y-6"> <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--color-secondary)]/30 text-[var(--color-text-main)] text-xs font-medium border border-[var(--color-secondary)]"> <span class="w-2 h-2 rounded-full bg-[var(--color-accent)]"></span>
+இன்றைய சிறப்பு கதை
+</div> <h1 class="text-3xl sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-[1.1] text-[var(--color-text-main)]"> ${featuredPost.data.title} </h1> <p class="text-lg text-[var(--color-text-muted)] max-w-lg leading-relaxed"> ${featuredPost.data.description} </p> <div class="flex flex-wrap gap-4 pt-2"> <a${addAttribute(`/blog/${featuredPost.id}/`, "href")} class="px-6 py-3 bg-[var(--color-accent)] text-white rounded-xl font-medium text-sm hover:bg-[var(--color-primary)] hover:text-[var(--color-bg)] transition-all duration-300 shadow-lg shadow-[var(--color-accent)]/20 flex items-center gap-2 group">
+வாசிக்க
+${renderComponent($$result2, "Icon", $$Icon, { "name": "book-open", "size": 16, "strokeWidth": 1.5, "class": "group-hover:translate-x-1 transition-transform" })} </a> <button class="px-6 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text-main)] rounded-xl font-medium text-sm hover:bg-[var(--color-accent)] hover:text-white transition-all duration-300 flex items-center gap-2">
+கேட்க
+${renderComponent($$result2, "Icon", $$Icon, { "name": "headphones", "size": 16, "strokeWidth": 1.5 })} </button> </div> </div> <div class="order-1 lg:order-2 relative group"> <div class="absolute inset-0 bg-[var(--color-secondary)] rounded-[2rem] rotate-3 opacity-40 group-hover:rotate-6 transition-transform duration-500"></div> <div class="relative bg-[var(--color-bg)] rounded-[2rem] overflow-hidden shadow-xl aspect-[4/3] border border-[var(--color-border)] flex items-center justify-center bg-gradient-to-br from-[var(--color-secondary)]/20 to-[var(--color-bg)]"> ${featuredPost.data.heroImage ? renderTemplate`${renderComponent($$result2, "Image", $$Image, { "width": 800, "height": 600, "src": featuredPost.data.heroImage, "alt": featuredPost.data.title, "class": "w-full h-full object-cover", "loading": "eager", "decoding": "sync", "fetchpriority": "high", "format": "avif" })}` : renderTemplate`<div class="text-center p-8"> ${renderComponent($$result2, "Icon", $$Icon, { "name": "book-open", "size": 64, "strokeWidth": 1, "class": "text-[var(--color-accent)] mx-auto mb-4" })} <p class="text-[var(--color-text-muted)] font-medium text-sm tracking-widest uppercase">
+கதை
+</p> </div>`} </div> </div> </section>`} <!-- Categories Filter --> <div class="mb-12 overflow-x-auto pb-4 scrollbar-hide"> <div class="flex space-x-3 min-w-max"> <button class="px-5 py-2 rounded-full bg-[var(--color-primary)] text-[var(--color-bg)] text-sm font-medium shadow-md shadow-[var(--color-primary)]/10">அனைத்தும்</button> <button class="px-5 py-2 rounded-full bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text-muted)] text-sm font-medium hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]/30 transition-all">விலங்குகள்</button> <button class="px-5 py-2 rounded-full bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text-muted)] text-sm font-medium hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]/30 transition-all">நட்பு</button> <button class="px-5 py-2 rounded-full bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text-muted)] text-sm font-medium hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]/30 transition-all">உண்மை</button> <button class="px-5 py-2 rounded-full bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text-muted)] text-sm font-medium hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]/30 transition-all">மரியாதை</button> <button class="px-5 py-2 rounded-full bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text-muted)] text-sm font-medium hover:text-[var(--color-accent)] hover:border-[var(--color-accent)]/30 transition-all">தெனாலிராமன்</button> </div> </div> <!-- Content Grid - Renders actual blog posts --> <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20"> ${gridPosts.map((post, index) => renderTemplate`<article class="group bg-[var(--color-bg)] rounded-2xl border border-[var(--color-border)] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col h-full"> <a${addAttribute(`/blog/${post.id}/`, "href")} class="flex flex-col h-full"> <div${addAttribute(`aspect-video relative overflow-hidden flex items-center justify-center ${index % 3 === 0 ? "bg-[var(--color-secondary)]/20" : index % 3 === 1 ? "bg-[var(--color-accent)]/10" : "bg-[var(--color-primary)]/5"}`, "class")}> ${post.data.heroImage ? renderTemplate`${renderComponent($$result2, "Image", $$Image, { "width": 720, "height": 360, "src": post.data.heroImage, "alt": post.data.title, "class": "w-full h-full object-cover group-hover:scale-105 transition-transform duration-300", "loading": index < 3 ? "eager" : "lazy", "decoding": index < 3 ? "sync" : "async", "fetchpriority": index < 3 ? "high" : "low", "format": "avif" })}` : renderTemplate`${renderComponent($$result2, "Icon", $$Icon, { "name": "book-open", "size": 48, "strokeWidth": 1.5, "class": "text-[var(--color-accent)]/60" })}`} </div> <div class="p-6 flex flex-col flex-grow"> <div class="flex items-center justify-between mb-3"> <span class="text-xs font-semibold text-[var(--color-accent)] uppercase tracking-wider">
+கதை
+</span> <span class="text-xs text-[var(--color-text-muted)] flex items-center gap-1"> ${renderComponent($$result2, "Icon", $$Icon, { "name": "calendar", "size": 12 })} ${renderComponent($$result2, "FormattedDate", $$FormattedDate, { "date": post.data.pubDate })} </span> </div> <h3 class="text-xl font-semibold text-[var(--color-text-main)] mb-2 tracking-tight group-hover:text-[var(--color-accent)] transition-colors"> ${post.data.title} </h3> <p class="text-[var(--color-text-muted)] text-sm leading-relaxed mb-6 flex-grow line-clamp-3"> ${post.data.description} </p> <div class="pt-4 border-t border-[var(--color-border)] flex items-center justify-between"> <div class="flex -space-x-2"> <div class="w-6 h-6 rounded-full bg-[var(--color-secondary)] border-2 border-[var(--color-bg)] flex items-center justify-center text-[8px] font-bold text-[var(--color-primary)]"> ${post.data.title.charAt(0).toUpperCase()} </div> </div> <span class="text-xs font-medium text-[var(--color-text-main)] group-hover:translate-x-1 transition-transform flex items-center gap-1">
+படிக்க
+${renderComponent($$result2, "Icon", $$Icon, { "name": "arrow-right", "size": 12 })} </span> </div> </div> </a> </article>`)} </div> <!-- View All Button --> <div class="text-center mb-20"> <a href="/blog" class="inline-flex items-center gap-2 px-8 py-4 bg-[var(--color-primary)] text-[var(--color-bg)] rounded-xl font-medium text-sm hover:bg-[var(--color-accent)] hover:text-white transition-all duration-300 shadow-lg">
+அனைத்து கதைகளும்
+${renderComponent($$result2, "Icon", $$Icon, { "name": "arrow-right", "size": 16 })} </a> </div> <!-- Newsletter --> <div id="subscribe" class="relative overflow-hidden rounded-3xl bg-[var(--color-primary)] px-6 py-16 sm:px-12 sm:py-20 shadow-2xl"> <div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-[var(--color-accent)] opacity-10 blur-3xl"></div> <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-[var(--color-secondary)] opacity-10 blur-3xl"></div> <div class="relative max-w-2xl mx-auto text-center"> <span class="inline-block p-3 rounded-xl bg-white/5 text-[var(--color-secondary)] mb-6 border border-white/10"> ${renderComponent($$result2, "Icon", $$Icon, { "name": "mail", "size": 24, "strokeWidth": 1.5 })} </span> <h2 class="text-3xl font-semibold text-white tracking-tight mb-4">
+புதிய கதைகள் உங்கள் மின்னஞ்சலில்
+</h2> <p class="text-gray-400 mb-8 font-light text-sm sm:text-base">
+வாரந்தோறும் புதிய மற்றும் சுவாரஸ்யமான சிறுவர் கதைகளை
+                    இலவசமாகப் பெறுங்கள்.
+</p> <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"> <input type="email" placeholder="மின்னஞ்சல் முகவரி" class="flex-1 bg-white/5 border border-white/10 text-white placeholder-gray-500 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/50 transition-all text-sm"> <button type="button" class="px-6 py-3 bg-[var(--color-accent)] text-white font-medium rounded-xl hover:bg-white hover:text-[var(--color-primary)] transition-colors duration-300 text-sm whitespace-nowrap">
+இணையுங்கள்
+</button> </form> </div> </div> </main> ${renderComponent($$result2, "Footer", $$Footer, {})} `, "head": async ($$result2) => renderTemplate`${renderComponent($$result2, "Fragment", Fragment, { "slot": "head" }, { "default": async ($$result3) => renderTemplate(_a || (_a = __template([' <script type="application/ld+json">', "<\/script> "])), unescapeHTML(websiteSchema)) })}` })}`;
+}, "/Users/bipulkumar/Documents/WebsiteUpdate/Tamil_Story/src/pages/index.astro", void 0);
+
+const $$file = "/Users/bipulkumar/Documents/WebsiteUpdate/Tamil_Story/src/pages/index.astro";
+const $$url = "";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+    __proto__: null,
+    default: $$Index,
+    file: $$file,
+    url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

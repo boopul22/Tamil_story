@@ -511,6 +511,14 @@ def main():
         f.write(content)
         
     print(f"\n🎉 Success! Story saved to: {output_filename}")
+    
+    # Cleanup: Delete subtitle file after processing
+    if sub_file and os.path.exists(sub_file):
+        try:
+            os.remove(sub_file)
+            print(f"🧹 Cleaned up subtitle file: {sub_file}")
+        except Exception as e:
+            print(f"⚠️ Could not delete subtitle file: {e}")
 
 if __name__ == "__main__":
     main()
