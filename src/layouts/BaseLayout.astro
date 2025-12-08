@@ -1,0 +1,54 @@
+---
+import "../styles/global.css";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import ThemeManager from "../components/ThemeManager.astro";
+
+const schema = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "TamilKathai",
+    url: "https://tamilkathai.in",
+    logo: "https://tamilkathai.in/favicon.svg",
+    description: "A collection of wonderful Tamil stories for children",
+});
+---
+
+<!doctype html>
+<html lang="ta">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Siruvar Neethi Kathaigal - Tamil Kids Stories</title>
+
+        <!-- Favicon and Branding -->
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#11224E" />
+        <meta name="msapplication-TileColor" content="#11224E" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+        />
+        <meta name="apple-mobile-web-app-title" content="TamilKathai" />
+
+        <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"
+        ></script>
+        <!-- Font Preconnect for faster loading -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <script type="application/ld+json" set:html={schema} />
+        <slot name="head" />
+        <ThemeManager />
+    </head>
+    <body
+        class="bg-[var(--color-bg)] text-[var(--color-text-main)] antialiased selection:bg-[#F87B1B] selection:text-white transition-colors duration-300 overflow-x-hidden"
+    >
+        <slot />
+    </body>
+</html>

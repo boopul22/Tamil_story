@@ -1,0 +1,142 @@
+---
+interface Props {
+    readingTime?: number;
+}
+
+const { readingTime } = Astro.props;
+---
+
+<div
+    class="reading-controls flex items-center justify-between p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-[#11224E]/5 mb-8"
+>
+    <!-- Reading Time -->
+    {
+        readingTime && (
+            <div class="flex items-center gap-2 text-sm text-[#11224E]/60 font-medium">
+                <span
+                    class="iconify"
+                    data-icon="lucide:clock"
+                    data-width="16"
+                    data-height="16"
+                />
+                <span>வாசிப்பு நேரம்: {readingTime} நிமிடம்</span>
+            </div>
+        )
+    }
+
+    <!-- Controls -->
+    <div class="flex items-center gap-4">
+        <!-- Font Size -->
+        <div class="flex items-center gap-1 bg-[#11224E]/5 rounded-lg p-1">
+            <button
+                id="decrease-font"
+                class="p-2 hover:bg-white rounded-md transition-colors text-[#11224E]/60 hover:text-[#11224E]"
+                aria-label="Decrease font size"
+            >
+                <span
+                    class="iconify"
+                    data-icon="lucide:minus"
+                    data-width="14"
+                    data-height="14"></span>
+            </button>
+            <span class="text-xs font-semibold text-[#11224E]/40 px-1">A</span>
+            <button
+                id="increase-font"
+                class="p-2 hover:bg-white rounded-md transition-colors text-[#11224E]/60 hover:text-[#11224E]"
+                aria-label="Increase font size"
+            >
+                <span
+                    class="iconify"
+                    data-icon="lucide:plus"
+                    data-width="14"
+                    data-height="14"></span>
+            </button>
+        </div>
+
+        <!-- Night Mode -->
+        <button
+            id="theme-toggle"
+            class="p-2 rounded-lg bg-[#11224E]/5 hover:bg-[#11224E] text-[#11224E] hover:text-white transition-all"
+            aria-label="Toggle dark mode"
+        >
+            <span
+                class="iconify dark-icon hidden"
+                data-icon="lucide:moon"
+                data-width="18"
+                data-height="18"></span>
+            <span
+                class="iconify light-icon"
+                data-icon="lucide:sun"
+                data-width="18"
+                data-height="18"></span>
+        </button>
+    </div>
+</div>
+
+<script>
+    // Font Size Control
+    const article = document.querySelector("article");
+    const increaseBtn = document.getElementById("increase-font");
+    const decreaseBtn = document.getElementById("decrease-font");
+
+    let currentSize = 100; // Percentage
+
+    function setFontSize(size: number) {
+        if (article) {
+            article.style.fontSize = `${size}%`;
+            localStorage.setItem("user-font-size", size.toString());
+        }
+    }
+
+    // Load saved font size
+    const savedSize = localStorage.getItem("user-font-size");
+    if (savedSize) {
+        currentSize = parseInt(savedSize);
+        setFontSize(currentSize);
+    }
+
+    increaseBtn?.addEventListener("click", () => {
+        if (currentSize < 130) {
+            currentSize += 10;
+            setFontSize(currentSize);
+        }
+    });
+
+    decreaseBtn?.addEventListener("click", () => {
+        if (currentSize > 90) {
+            currentSize -= 10;
+            setFontSize(currentSize);
+        }
+    });
+
+    // Theme Toggle
+    const themeToggle = document.getElementById("theme-toggle");
+    const lightIcon = themeToggle?.querySelector(".light-icon");
+    const darkIcon = themeToggle?.querySelector(".dark-icon");
+
+    function updateIcons(isDark: boolean) {
+        if (isDark) {
+            lightIcon?.classList.add("hidden");
+            darkIcon?.classList.remove("hidden");
+        } else {
+            lightIcon?.classList.remove("hidden");
+            darkIcon?.classList.add("hidden");
+        }
+    }
+
+    // Listen for global theme changes from ThemeManager
+    window.addEventListener("theme-change", ((e: CustomEvent) => {
+        updateIcons(e.detail.theme === "dark");
+    }) as EventListener);
+
+    // Initialize state
+    const currentTheme = document.documentElement.classList.contains("dark")
+        ? "dark"
+        : "light";
+    updateIcons(currentTheme === "dark");
+
+    themeToggle?.addEventListener("click", () => {
+        // @ts-ignore
+        window.toggleTheme?.();
+    });
+</script>

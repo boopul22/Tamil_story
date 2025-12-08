@@ -1,0 +1,115 @@
+---
+import { SITE_TITLE } from "../consts";
+---
+
+<!-- Navigation matching Tamil Story design -->
+<nav
+	class="fixed top-0 w-full z-50 bg-[#EEEEEE]/80 backdrop-blur-md border-b border-[#11224E]/5"
+>
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<div class="flex justify-between items-center h-16">
+			<!-- Logo -->
+			<a
+				href="/"
+				class="flex-shrink-0 flex items-center gap-2 cursor-pointer group"
+			>
+				<div
+					class="w-8 h-8 rounded-lg bg-[#11224E] text-white flex items-center justify-center group-hover:bg-[#F87B1B] transition-colors duration-300"
+				>
+					<span class="font-bold text-lg tracking-tighter">க</span>
+				</div>
+				<span
+					class="font-semibold text-lg tracking-tight text-[#11224E]"
+					>கதைகள்</span
+				>
+			</a>
+
+			<!-- Desktop Menu -->
+			<div class="hidden md:flex items-center space-x-8">
+				<a
+					href="/"
+					class="text-sm font-medium text-[#11224E] hover:text-[#F87B1B] transition-colors"
+					>முகப்பு</a
+				>
+				<a
+					href="/blog"
+					class="text-sm font-medium text-[#11224E] hover:text-[#F87B1B] transition-colors"
+					>கதைகள்</a
+				>
+				<a
+					href="/about"
+					class="text-sm font-medium text-[#11224E] hover:text-[#F87B1B] transition-colors"
+					>பற்றி</a
+				>
+			</div>
+
+			<!-- Actions -->
+			<div class="flex items-center gap-4">
+				<button
+					class="p-2 text-[#11224E] hover:bg-white rounded-full transition-all"
+				>
+					<span
+						class="iconify"
+						data-icon="lucide:search"
+						data-width="20"
+						data-height="20"
+						data-stroke-width="1.5"></span>
+				</button>
+				<a
+					href="#subscribe"
+					class="hidden sm:flex px-4 py-2 bg-[#11224E] text-white text-xs font-medium rounded-full hover:bg-[#F87B1B] transition-colors duration-300 items-center gap-2"
+				>
+					<span>பதிவு செய்</span>
+					<span
+						class="iconify"
+						data-icon="lucide:arrow-right"
+						data-width="14"
+						data-height="14"
+						data-stroke-width="1.5"></span>
+				</a>
+				<!-- Mobile Menu Button -->
+				<button
+					class="md:hidden p-2 text-[#11224E]"
+					id="mobile-menu-btn"
+				>
+					<span
+						class="iconify"
+						data-icon="lucide:menu"
+						data-width="24"
+						data-height="24"
+						data-stroke-width="1.5"></span>
+				</button>
+			</div>
+		</div>
+
+		<!-- Mobile Menu -->
+		<div class="hidden md:hidden pb-4" id="mobile-menu">
+			<div class="flex flex-col space-y-2">
+				<a
+					href="/"
+					class="px-4 py-2 text-sm font-medium text-[#11224E] hover:text-[#F87B1B] hover:bg-white rounded-lg transition-colors"
+					>முகப்பு</a
+				>
+				<a
+					href="/blog"
+					class="px-4 py-2 text-sm font-medium text-[#11224E] hover:text-[#F87B1B] hover:bg-white rounded-lg transition-colors"
+					>கதைகள்</a
+				>
+				<a
+					href="/about"
+					class="px-4 py-2 text-sm font-medium text-[#11224E] hover:text-[#F87B1B] hover:bg-white rounded-lg transition-colors"
+					>பற்றி</a
+				>
+			</div>
+		</div>
+	</div>
+</nav>
+
+<script>
+	const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+	const mobileMenu = document.getElementById("mobile-menu");
+
+	mobileMenuBtn?.addEventListener("click", () => {
+		mobileMenu?.classList.toggle("hidden");
+	});
+</script>

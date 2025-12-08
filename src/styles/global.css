@@ -1,0 +1,84 @@
+@import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
+
+/* ===== Design System Theme (Tailwind v4) ===== */
+@theme {
+	--color-bg: #EEEEEE;
+	--color-primary: #11224E;
+	--color-accent: #F87B1B;
+	--color-secondary: #CBD99B;
+}
+
+/* ===== CSS Variables & Theming ===== */
+:root {
+	--color-bg: #EEEEEE;
+	--color-primary: #11224E;
+	--color-accent: #F87B1B;
+	--color-secondary: #CBD99B;
+	/* Text colors */
+	--color-text-main: #11224E;
+	--color-text-muted: rgba(17, 34, 78, 0.6);
+	--color-border: rgba(17, 34, 78, 0.1);
+}
+
+:root.dark {
+	--color-bg: #1a1a1a;
+	--color-primary: #ffffff;
+	--color-text-main: #ffffff;
+	--color-text-muted: rgba(255, 255, 255, 0.6);
+	--color-border: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Base Styles ===== */
+body {
+	font-family: 'Inter', 'Noto Sans Tamil', sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+/* ===== Custom Scrollbar ===== */
+::-webkit-scrollbar {
+	width: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #CBD99B;
+	border-radius: 20px;
+}
+
+/* ===== Utility Classes ===== */
+.scrollbar-hide::-webkit-scrollbar {
+	display: none;
+}
+
+.scrollbar-hide {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+}
+
+/* Line clamp for story descriptions */
+.line-clamp-3 {
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* ===== Screen Reader Only ===== */
+.sr-only {
+	border: 0;
+	padding: 0;
+	margin: 0;
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
