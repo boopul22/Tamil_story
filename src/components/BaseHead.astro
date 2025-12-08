@@ -39,6 +39,17 @@ const { title, description, image = FallbackImage } = Astro.props;
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+<!-- CDN preconnect for faster image loading -->
+<link
+	rel="preconnect"
+	href="https://pub-141831e61e69445289222976a15b6fb3.r2.dev"
+	crossorigin
+/>
+<link
+	rel="dns-prefetch"
+	href="https://pub-141831e61e69445289222976a15b6fb3.r2.dev"
+/>
+
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 

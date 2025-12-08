@@ -56,6 +56,9 @@ const collectionSchema = JSON.stringify({
                                     alt={post.data.title}
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                     loading={index < 6 ? "eager" : "lazy"}
+                                    decoding={index < 6 ? "sync" : "async"}
+                                    fetchpriority={index < 3 ? "high" : "low"}
+                                    format=\"avif\"
                                 />
                             ) : (
                                 <Icon name="book-open" size={48} strokeWidth={1.5} class="text-[var(--color-accent)]/60" />

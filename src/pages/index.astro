@@ -90,6 +90,9 @@ const websiteSchema = JSON.stringify({
                                     alt={featuredPost.data.title}
                                     class="w-full h-full object-cover"
                                     loading="eager"
+                                    decoding="sync"
+                                    fetchpriority="high"
+                                    format="avif"
                                 />
                             ) : (
                                 <div class="text-center p-8">
@@ -160,6 +163,11 @@ const websiteSchema = JSON.stringify({
                                         alt={post.data.title}
                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                         loading={index < 3 ? "eager" : "lazy"}
+                                        decoding={index < 3 ? "sync" : "async"}
+                                        fetchpriority={
+                                            index < 3 ? "high" : "low"
+                                        }
+                                        format="avif"
                                     />
                                 ) : (
                                     <Icon
