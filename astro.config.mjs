@@ -8,7 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://tamilkathai.in',
+  site: 'https://tamil-story.vercel.app',
   integrations: [mdx(), sitemap()],
 
   vite: {
