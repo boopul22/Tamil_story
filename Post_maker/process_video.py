@@ -356,17 +356,31 @@ def download_and_upload_image(whisk_response, prompt_short):
         return None
 
 def upload_to_r2(image_data, name_prefix):
+    """Upload image to R2 in WebP format for better compression and speed"""
+    from io import BytesIO
+    from PIL import Image
+    
     timestamp = int(time.time())
-    filename = f"blog_hero_{timestamp}_{name_prefix[:20].replace(' ', '_')}.jpg"
+    filename = f"blog_hero_{timestamp}_{name_prefix[:20].replace(' ', '_')}.webp"
     key = f"generated_images/{filename}"
     
-    print(f"⬆️ Uploading to R2: {key}...")
+    print(f"⬆️ Converting to WebP and uploading to R2: {key}...")
     try:
+        # Convert image to WebP format
+        img = Image.open(BytesIO(image_data))
+        webp_buffer = BytesIO()
+        img.save(webp_buffer, format='WEBP', quality=85, method=6)
+        webp_data = webp_buffer.getvalue()
+        
+        original_size = len(image_data)
+        webp_size = len(webp_data)
+        print(f"   📦 Size: {original_size/1024:.1f}KB → {webp_size/1024:.1f}KB ({100-webp_size*100/original_size:.0f}% smaller)")
+        
         s3_client.put_object(
             Bucket=R2_BUCKET_NAME,
             Key=key,
-            Body=image_data,
-            ContentType='image/jpeg'
+            Body=webp_data,
+            ContentType='image/webp'
         )
         url = f"{R2_PUBLIC_URL}/{key}"
         print(f"✅ Upload successful: {url}")
