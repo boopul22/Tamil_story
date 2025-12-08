@@ -1,4 +1,6 @@
 ---
+import Icon from "./Icon.astro";
+
 interface Props {
     readingTime?: number;
 }
@@ -7,18 +9,13 @@ const { readingTime } = Astro.props;
 ---
 
 <div
-    class="reading-controls flex items-center justify-between p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-[#11224E]/5 mb-8"
+    class="reading-controls flex items-center justify-between p-4 bg-[var(--color-bg)]/50 backdrop-blur-sm rounded-xl border border-[var(--color-border)] mb-8"
 >
     <!-- Reading Time -->
     {
         readingTime && (
-            <div class="flex items-center gap-2 text-sm text-[#11224E]/60 font-medium">
-                <span
-                    class="iconify"
-                    data-icon="lucide:clock"
-                    data-width="16"
-                    data-height="16"
-                />
+            <div class="flex items-center gap-2 text-sm text-[var(--color-text-muted)] font-medium">
+                <Icon name="clock" size={16} />
                 <span>வாசிப்பு நேரம்: {readingTime} நிமிடம்</span>
             </div>
         )
@@ -27,48 +24,37 @@ const { readingTime } = Astro.props;
     <!-- Controls -->
     <div class="flex items-center gap-4">
         <!-- Font Size -->
-        <div class="flex items-center gap-1 bg-[#11224E]/5 rounded-lg p-1">
+        <div
+            class="flex items-center gap-1 bg-[var(--color-primary)]/5 rounded-lg p-1"
+        >
             <button
                 id="decrease-font"
-                class="p-2 hover:bg-white rounded-md transition-colors text-[#11224E]/60 hover:text-[#11224E]"
+                class="p-2 hover:bg-[var(--color-bg)] rounded-md transition-colors text-[var(--color-text-muted)] hover:text-[var(--color-text-main)]"
                 aria-label="Decrease font size"
             >
-                <span
-                    class="iconify"
-                    data-icon="lucide:minus"
-                    data-width="14"
-                    data-height="14"></span>
+                <Icon name="minus" size={14} />
             </button>
-            <span class="text-xs font-semibold text-[#11224E]/40 px-1">A</span>
+            <span
+                class="text-xs font-semibold text-[var(--color-text-muted)] px-1"
+                >A</span
+            >
             <button
                 id="increase-font"
-                class="p-2 hover:bg-white rounded-md transition-colors text-[#11224E]/60 hover:text-[#11224E]"
+                class="p-2 hover:bg-[var(--color-bg)] rounded-md transition-colors text-[var(--color-text-muted)] hover:text-[var(--color-text-main)]"
                 aria-label="Increase font size"
             >
-                <span
-                    class="iconify"
-                    data-icon="lucide:plus"
-                    data-width="14"
-                    data-height="14"></span>
+                <Icon name="plus" size={14} />
             </button>
         </div>
 
         <!-- Night Mode -->
         <button
             id="theme-toggle"
-            class="p-2 rounded-lg bg-[#11224E]/5 hover:bg-[#11224E] text-[#11224E] hover:text-white transition-all"
+            class="p-2 rounded-lg bg-[var(--color-primary)]/5 hover:bg-[var(--color-primary)] text-[var(--color-text-main)] hover:text-[var(--color-bg)] transition-all"
             aria-label="Toggle dark mode"
         >
-            <span
-                class="iconify dark-icon hidden"
-                data-icon="lucide:moon"
-                data-width="18"
-                data-height="18"></span>
-            <span
-                class="iconify light-icon"
-                data-icon="lucide:sun"
-                data-width="18"
-                data-height="18"></span>
+            <Icon name="moon" size={18} class="dark-icon hidden" />
+            <Icon name="sun" size={18} class="light-icon" />
         </button>
     </div>
 </div>

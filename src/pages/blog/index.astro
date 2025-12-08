@@ -5,6 +5,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Footer from '../../components/Footer.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
+import Icon from '../../components/Icon.astro';
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL } from "../../consts";
 
 const posts = (await getCollection('blog')).sort(
@@ -28,25 +29,25 @@ const collectionSchema = JSON.stringify({
     <main class="pt-24 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <!-- Page Header -->
         <div class="mb-12">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#CBD99B]/30 text-[#11224E] text-xs font-medium border border-[#CBD99B] mb-4">
-                <span class="w-2 h-2 rounded-full bg-[#F87B1B]"></span>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--color-secondary)]/30 text-[var(--color-text-main)] text-xs font-medium border border-[var(--color-secondary)] mb-4">
+                <span class="w-2 h-2 rounded-full bg-[var(--color-accent)]"></span>
                 அனைத்து கதைகள்
             </div>
-            <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight text-[#11224E] leading-tight">
-                சிறுவர் நீதி <span class="text-[#F87B1B]">கதைகள்</span>
+            <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight text-[var(--color-text-main)] leading-tight">
+                சிறுவர் நீதி <span class="text-[var(--color-accent)]">கதைகள்</span>
             </h1>
-            <p class="mt-4 text-lg text-[#11224E]/70 max-w-2xl">
+            <p class="mt-4 text-lg text-[var(--color-text-muted)] max-w-2xl">
                 குழந்தைகளுக்கான நற்பண்புகள் மற்றும் நீதி போதனைகளை கதைகள் மூலம் அறிந்து கொள்ளுங்கள்.
             </p>
         </div>
         
         <!-- Stories Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post) => (
-                <article class="group bg-white rounded-2xl border border-[#11224E]/5 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col h-full">
+            {posts.map((post, index) => (
+                <article class="group bg-[var(--color-bg)] rounded-2xl border border-[var(--color-border)] shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden flex flex-col h-full">
                     <a href={`/blog/${post.id}/`} class="flex flex-col h-full">
                         <!-- Image -->
-                        <div class="aspect-video bg-[#CBD99B]/20 relative overflow-hidden flex items-center justify-center">
+                        <div class="aspect-video bg-[var(--color-secondary)]/20 relative overflow-hidden flex items-center justify-center">
                             {post.data.heroImage ? (
                                 <Image 
                                     width={720} 
@@ -54,34 +55,35 @@ const collectionSchema = JSON.stringify({
                                     src={post.data.heroImage} 
                                     alt={post.data.title}
                                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    loading={index < 6 ? "eager" : "lazy"}
                                 />
                             ) : (
-                                <span class="iconify text-[#F87B1B]/60" data-icon="lucide:book-open" data-width="48" data-height="48" data-stroke-width="1.5"></span>
+                                <Icon name="book-open" size={48} strokeWidth={1.5} class="text-[var(--color-accent)]/60" />
                             )}
                         </div>
                         
                         <!-- Content -->
                         <div class="p-6 flex flex-col flex-grow">
                             <div class="flex items-center justify-between mb-3">
-                                <span class="text-xs font-semibold text-[#F87B1B] uppercase tracking-wider">கதை</span>
-                                <span class="text-xs text-[#11224E]/40 flex items-center gap-1">
-                                    <span class="iconify" data-icon="lucide:calendar" data-width="12" data-height="12"></span>
+                                <span class="text-xs font-semibold text-[var(--color-accent)] uppercase tracking-wider">கதை</span>
+                                <span class="text-xs text-[var(--color-text-muted)] flex items-center gap-1">
+                                    <Icon name="calendar" size={12} />
                                     <FormattedDate date={post.data.pubDate} />
                                 </span>
                             </div>
                             
-                            <h3 class="text-xl font-semibold text-[#11224E] mb-2 tracking-tight group-hover:text-[#F87B1B] transition-colors">
+                            <h3 class="text-xl font-semibold text-[var(--color-text-main)] mb-2 tracking-tight group-hover:text-[var(--color-accent)] transition-colors">
                                 {post.data.title}
                             </h3>
                             
-                            <p class="text-[#11224E]/60 text-sm leading-relaxed mb-6 flex-grow line-clamp-3">
+                            <p class="text-[var(--color-text-muted)] text-sm leading-relaxed mb-6 flex-grow line-clamp-3">
                                 {post.data.description}
                             </p>
                             
-                            <div class="pt-4 border-t border-[#11224E]/5 flex items-center justify-end">
-                                <span class="text-xs font-medium text-[#11224E] group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                            <div class="pt-4 border-t border-[var(--color-border)] flex items-center justify-end">
+                                <span class="text-xs font-medium text-[var(--color-text-main)] group-hover:translate-x-1 transition-transform flex items-center gap-1">
                                     படிக்க
-                                    <span class="iconify" data-icon="lucide:arrow-right" data-width="12" data-height="12"></span>
+                                    <Icon name="arrow-right" size={12} />
                                 </span>
                             </div>
                         </div>

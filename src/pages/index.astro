@@ -5,6 +5,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
 
 // Get actual blog posts sorted by date
 const posts = (await getCollection("blog")).sort(
@@ -61,22 +62,19 @@ const websiteSchema = JSON.stringify({
                                 class="px-6 py-3 bg-[var(--color-accent)] text-white rounded-xl font-medium text-sm hover:bg-[var(--color-primary)] hover:text-[var(--color-bg)] transition-all duration-300 shadow-lg shadow-[var(--color-accent)]/20 flex items-center gap-2 group"
                             >
                                 வாசிக்க
-                                <span
-                                    class="iconify group-hover:translate-x-1 transition-transform"
-                                    data-icon="lucide:book-open"
-                                    data-width="16"
-                                    data-height="16"
-                                    data-stroke-width="1.5"
+                                <Icon
+                                    name="book-open"
+                                    size={16}
+                                    strokeWidth={1.5}
+                                    class="group-hover:translate-x-1 transition-transform"
                                 />
                             </a>
                             <button class="px-6 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text-main)] rounded-xl font-medium text-sm hover:bg-[var(--color-accent)] hover:text-white transition-all duration-300 flex items-center gap-2">
                                 கேட்க
-                                <span
-                                    class="iconify"
-                                    data-icon="lucide:headphones"
-                                    data-width="16"
-                                    data-height="16"
-                                    data-stroke-width="1.5"
+                                <Icon
+                                    name="headphones"
+                                    size={16}
+                                    strokeWidth={1.5}
                                 />
                             </button>
                         </div>
@@ -91,15 +89,15 @@ const websiteSchema = JSON.stringify({
                                     src={featuredPost.data.heroImage}
                                     alt={featuredPost.data.title}
                                     class="w-full h-full object-cover"
+                                    loading="eager"
                                 />
                             ) : (
                                 <div class="text-center p-8">
-                                    <span
-                                        class="iconify text-[var(--color-accent)] mx-auto mb-4"
-                                        data-icon="lucide:book-open"
-                                        data-width="64"
-                                        data-height="64"
-                                        data-stroke-width="1"
+                                    <Icon
+                                        name="book-open"
+                                        size={64}
+                                        strokeWidth={1}
+                                        class="text-[var(--color-accent)] mx-auto mb-4"
                                     />
                                     <p class="text-[var(--color-text-muted)] font-medium text-sm tracking-widest uppercase">
                                         கதை
@@ -116,7 +114,7 @@ const websiteSchema = JSON.stringify({
         <div class="mb-12 overflow-x-auto pb-4 scrollbar-hide">
             <div class="flex space-x-3 min-w-max">
                 <button
-                    class="px-5 py-2 rounded-full bg-[var(--color-primary)] text-white text-sm font-medium shadow-md shadow-[var(--color-primary)]/10"
+                    class="px-5 py-2 rounded-full bg-[var(--color-primary)] text-[var(--color-bg)] text-sm font-medium shadow-md shadow-[var(--color-primary)]/10"
                     >அனைத்தும்</button
                 >
                 <button
@@ -161,14 +159,14 @@ const websiteSchema = JSON.stringify({
                                         src={post.data.heroImage}
                                         alt={post.data.title}
                                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                        loading={index < 3 ? "eager" : "lazy"}
                                     />
                                 ) : (
-                                    <span
-                                        class="iconify text-[var(--color-accent)]/60"
-                                        data-icon="lucide:book-open"
-                                        data-width="48"
-                                        data-height="48"
-                                        data-stroke-width="1.5"
+                                    <Icon
+                                        name="book-open"
+                                        size={48}
+                                        strokeWidth={1.5}
+                                        class="text-[var(--color-accent)]/60"
                                     />
                                 )}
                             </div>
@@ -178,12 +176,7 @@ const websiteSchema = JSON.stringify({
                                         கதை
                                     </span>
                                     <span class="text-xs text-[var(--color-text-muted)] flex items-center gap-1">
-                                        <span
-                                            class="iconify"
-                                            data-icon="lucide:calendar"
-                                            data-width="12"
-                                            data-height="12"
-                                        />
+                                        <Icon name="calendar" size={12} />
                                         <FormattedDate
                                             date={post.data.pubDate}
                                         />
@@ -205,12 +198,7 @@ const websiteSchema = JSON.stringify({
                                     </div>
                                     <span class="text-xs font-medium text-[var(--color-text-main)] group-hover:translate-x-1 transition-transform flex items-center gap-1">
                                         படிக்க
-                                        <span
-                                            class="iconify"
-                                            data-icon="lucide:arrow-right"
-                                            data-width="12"
-                                            data-height="12"
-                                        />
+                                        <Icon name="arrow-right" size={12} />
                                     </span>
                                 </div>
                             </div>
@@ -227,38 +215,29 @@ const websiteSchema = JSON.stringify({
                 class="inline-flex items-center gap-2 px-8 py-4 bg-[var(--color-primary)] text-[var(--color-bg)] rounded-xl font-medium text-sm hover:bg-[var(--color-accent)] hover:text-white transition-all duration-300 shadow-lg"
             >
                 அனைத்து கதைகளும்
-                <span
-                    class="iconify"
-                    data-icon="lucide:arrow-right"
-                    data-width="16"
-                    data-height="16"></span>
+                <Icon name="arrow-right" size={16} />
             </a>
         </div>
 
         <!-- Newsletter -->
         <div
             id="subscribe"
-            class="relative overflow-hidden rounded-3xl bg-[#11224E] px-6 py-16 sm:px-12 sm:py-20 shadow-2xl"
+            class="relative overflow-hidden rounded-3xl bg-[var(--color-primary)] px-6 py-16 sm:px-12 sm:py-20 shadow-2xl"
         >
             <div
-                class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-[#F87B1B] opacity-10 blur-3xl"
+                class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-[var(--color-accent)] opacity-10 blur-3xl"
             >
             </div>
             <div
-                class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-[#CBD99B] opacity-10 blur-3xl"
+                class="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-[var(--color-secondary)] opacity-10 blur-3xl"
             >
             </div>
 
             <div class="relative max-w-2xl mx-auto text-center">
                 <span
-                    class="inline-block p-3 rounded-xl bg-white/5 text-[#CBD99B] mb-6 border border-white/10"
+                    class="inline-block p-3 rounded-xl bg-white/5 text-[var(--color-secondary)] mb-6 border border-white/10"
                 >
-                    <span
-                        class="iconify"
-                        data-icon="lucide:mail"
-                        data-width="24"
-                        data-height="24"
-                        data-stroke-width="1.5"></span>
+                    <Icon name="mail" size={24} strokeWidth={1.5} />
                 </span>
                 <h2
                     class="text-3xl font-semibold text-white tracking-tight mb-4"
@@ -273,11 +252,11 @@ const websiteSchema = JSON.stringify({
                     <input
                         type="email"
                         placeholder="மின்னஞ்சல் முகவரி"
-                        class="flex-1 bg-white/5 border border-white/10 text-white placeholder-gray-500 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#F87B1B]/50 transition-all text-sm"
+                        class="flex-1 bg-white/5 border border-white/10 text-white placeholder-gray-500 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]/50 transition-all text-sm"
                     />
                     <button
                         type="button"
-                        class="px-6 py-3 bg-[#F87B1B] text-white font-medium rounded-xl hover:bg-white hover:text-[#11224E] transition-colors duration-300 text-sm whitespace-nowrap"
+                        class="px-6 py-3 bg-[var(--color-accent)] text-white font-medium rounded-xl hover:bg-white hover:text-[var(--color-primary)] transition-colors duration-300 text-sm whitespace-nowrap"
                     >
                         இணையுங்கள்
                     </button>

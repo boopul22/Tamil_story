@@ -5,6 +5,7 @@ import BaseLayout from "./BaseLayout.astro";
 import Footer from "../components/Footer.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import Header from "../components/Header.astro";
+import Icon from "../components/Icon.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
@@ -104,7 +105,7 @@ const breadcrumbSchema = JSON.stringify({
 	<!-- Reading Progress Bar -->
 	<div
 		id="reading-progress"
-		class="fixed top-16 left-0 w-0 h-1 bg-gradient-to-r from-[#F87B1B] to-[#CBD99B] z-40 transition-all duration-150"
+		class="fixed top-16 left-0 w-0 h-1 bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-secondary)] z-40 transition-all duration-150"
 	>
 	</div>
 
@@ -121,21 +122,13 @@ const breadcrumbSchema = JSON.stringify({
 					class="hover:text-[var(--color-accent)] transition-colors"
 					>முகப்பு</a
 				>
-				<span
-					class="iconify"
-					data-icon="lucide:chevron-right"
-					data-width="14"
-					data-height="14"></span>
+				<Icon name="chevron-right" size={14} />
 				<a
 					href="/blog"
 					class="hover:text-[var(--color-accent)] transition-colors"
 					>கதைகள்</a
 				>
-				<span
-					class="iconify"
-					data-icon="lucide:chevron-right"
-					data-width="14"
-					data-height="14"></span>
+				<Icon name="chevron-right" size={14} />
 				<span
 					class="text-[var(--color-text-main)] font-medium truncate max-w-[200px]"
 					>{title}</span
@@ -148,7 +141,7 @@ const breadcrumbSchema = JSON.stringify({
 			<header class="max-w-3xl mx-auto mb-8">
 				<!-- Category Badge -->
 				<div
-					class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#CBD99B]/30 text-[var(--color-text-main)] text-xs font-medium border border-[#CBD99B] mb-4"
+					class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--color-secondary)]/30 text-[var(--color-text-main)] text-xs font-medium border border-[var(--color-secondary)] mb-4"
 				>
 					<span class="w-2 h-2 rounded-full bg-[var(--color-accent)]"
 					></span>
@@ -181,11 +174,7 @@ const breadcrumbSchema = JSON.stringify({
 					class="flex flex-wrap items-center gap-4 text-sm text-[var(--color-text-muted)]"
 				>
 					<span class="inline-flex items-center gap-2">
-						<span
-							class="iconify"
-							data-icon="lucide:clock"
-							data-width="16"
-							data-height="16"></span>
+						<Icon name="clock" size={16} />
 						<span id="reading-time">3 நிமிடங்கள்</span>
 					</span>
 				</div>
@@ -195,13 +184,14 @@ const breadcrumbSchema = JSON.stringify({
 			{
 				heroImage && (
 					<div class="max-w-3xl mx-auto mb-10 rounded-2xl overflow-hidden shadow-xl border border-[var(--color-border)] group relative">
-						<div class="absolute inset-0 bg-gradient-to-t from-[#11224E]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+						<div class="absolute inset-0 bg-gradient-to-t from-[var(--color-primary)]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 						<Image
 							width={1200}
 							height={600}
 							src={heroImage}
 							alt={title}
 							class="w-full h-auto object-cover"
+							loading="eager"
 						/>
 					</div>
 				)
@@ -222,11 +212,10 @@ const breadcrumbSchema = JSON.stringify({
 						moral && (
 							<div class="moral-section mt-12 bg-[var(--color-accent)]/5 border-l-4 border-[var(--color-accent)] p-6 rounded-r-xl">
 								<h3 class="text-xl font-bold text-[var(--color-text-main)] mb-2 flex items-center gap-2">
-									<span
-										class="iconify text-[var(--color-accent)]"
-										data-icon="lucide:lightbulb"
-										data-width="24"
-										data-height="24"
+									<Icon
+										name="lightbulb"
+										size={24}
+										class="text-[var(--color-accent)]"
 									/>
 									கதையின் நீதி (Moral of the Story)
 								</h3>
@@ -256,11 +245,7 @@ const breadcrumbSchema = JSON.stringify({
 						class="w-11 h-11 rounded-full bg-[#25D366] text-white flex items-center justify-center hover:scale-105 transition-transform border border-[#25D366]/20"
 						title="WhatsApp-ல் பகிர்"
 					>
-						<span
-							class="iconify"
-							data-icon="lucide:message-circle"
-							data-width="22"
-							data-height="22"></span>
+						<Icon name="message-circle" size={22} />
 					</a>
 					<a
 						href={`https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`}
@@ -269,11 +254,7 @@ const breadcrumbSchema = JSON.stringify({
 						class="w-11 h-11 rounded-full bg-[#1DA1F2] text-white flex items-center justify-center hover:scale-105 transition-transform border border-[#1DA1F2]/20"
 						title="Twitter-ல் பகிர்"
 					>
-						<span
-							class="iconify"
-							data-icon="lucide:twitter"
-							data-width="22"
-							data-height="22"></span>
+						<Icon name="twitter" size={22} />
 					</a>
 					<a
 						href={`https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`}
@@ -282,22 +263,14 @@ const breadcrumbSchema = JSON.stringify({
 						class="w-11 h-11 rounded-full bg-[#1877F2] text-white flex items-center justify-center hover:scale-105 transition-transform border border-[#1877F2]/20"
 						title="Facebook-ல் பகிர்"
 					>
-						<span
-							class="iconify"
-							data-icon="lucide:facebook"
-							data-width="22"
-							data-height="22"></span>
+						<Icon name="facebook" size={22} />
 					</a>
 					<button
 						id="copy-link-mobile"
 						class="w-11 h-11 rounded-full bg-[var(--color-text-main)] text-[var(--color-bg)] flex items-center justify-center hover:bg-[var(--color-accent)] hover:scale-105 transition-all border border-[var(--color-border)]"
 						title="இணைப்பை நகலெடு"
 					>
-						<span
-							class="iconify"
-							data-icon="lucide:link"
-							data-width="22"
-							data-height="22"></span>
+						<Icon name="link" size={22} />
 					</button>
 				</div>
 			</div>
@@ -310,22 +283,14 @@ const breadcrumbSchema = JSON.stringify({
 					href="/blog"
 					class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text-main)] rounded-xl font-medium text-sm hover:bg-[var(--color-accent)] hover:text-white transition-all duration-300"
 				>
-					<span
-						class="iconify"
-						data-icon="lucide:arrow-left"
-						data-width="16"
-						data-height="16"></span>
+					<Icon name="arrow-left" size={16} />
 					அனைத்து கதைகளும்
 				</a>
 				<button
 					id="scroll-to-top"
 					class="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[var(--color-accent)] text-white rounded-xl font-medium text-sm hover:bg-[var(--color-text-main)] transition-all duration-300 border border-[var(--color-accent)]/20"
 				>
-					<span
-						class="iconify"
-						data-icon="lucide:arrow-up"
-						data-width="16"
-						data-height="16"></span>
+					<Icon name="arrow-up" size={16} />
 					மேலே செல்
 				</button>
 			</div>
@@ -434,10 +399,9 @@ const breadcrumbSchema = JSON.stringify({
 		btn?.addEventListener("click", async () => {
 			try {
 				await navigator.clipboard.writeText(window.location.href);
-				// Show feedback
+				// Show feedback - change icon temporarily
 				const originalHTML = btn.innerHTML;
-				btn.innerHTML =
-					'<span class="iconify" data-icon="lucide:check" data-width="22" data-height="22"></span>';
+				btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`;
 				setTimeout(() => {
 					btn.innerHTML = originalHTML;
 				}, 2000);

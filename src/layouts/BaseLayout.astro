@@ -33,15 +33,21 @@ const schema = JSON.stringify({
         />
         <meta name="apple-mobile-web-app-title" content="TamilKathai" />
 
-        <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"
-        ></script>
-        <!-- Font Preconnect for faster loading -->
+        <!-- Font Preload for faster loading -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap"
             rel="stylesheet"
+            media="print"
+            onload="this.media='all'"
         />
+        <noscript>
+            <link
+                href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+Tamil:wght@300;400;500;600;700&display=swap"
+                rel="stylesheet"
+            />
+        </noscript>
         <script type="application/ld+json" set:html={schema} />
         <slot name="head" />
         <ThemeManager />
