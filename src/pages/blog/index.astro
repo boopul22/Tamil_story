@@ -8,14 +8,7 @@ import Header from '../../components/Header.astro';
 import Icon from '../../components/Icon.astro';
 import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL } from "../../consts";
 
-export const prerender = true;
-
-// Get current date for filtering scheduled posts
-const now = new Date();
-now.setHours(23, 59, 59, 999); // Include posts from today
-
 const posts = (await getCollection('blog'))
-    .filter((post) => !post.data.draft && post.data.pubDate <= now)
     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const collectionSchema = JSON.stringify({

@@ -7,8 +7,6 @@ import { getCollection } from "astro:content";
 import FormattedDate from "../components/FormattedDate.astro";
 import { Image } from "astro:assets";
 
-export const prerender = true;
-
 export async function getStaticPaths() {
     const categories = [
         { slug: "neethi", title: "நீதி கதைகள்", titleEn: "Moral Stories" },
@@ -35,17 +33,8 @@ export async function getStaticPaths() {
 const { category } = Astro.params;
 const { categoryName, categoryNameEn } = Astro.props;
 
-// Get current date for filtering scheduled posts
-const now = new Date();
-now.setHours(23, 59, 59, 999); // Include posts from today
-
 const posts = (await getCollection("blog"))
-    .filter(
-        (post) =>
-            !post.data.draft &&
-            post.data.pubDate <= now &&
-            post.data.category === category,
-    )
+    .filter((post) => post.data.category === category)
     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const title = `${categoryName} - ${categoryNameEn} | ${SITE_TITLE}`;

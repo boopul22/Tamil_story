@@ -2,15 +2,8 @@
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import BlogPost from "../../layouts/BlogPost.astro";
 
-export const prerender = true;
-
 export async function getStaticPaths() {
-	const now = new Date();
-	now.setHours(23, 59, 59, 999); // Include posts from today
-
-	const posts = (await getCollection("blog")).filter(
-		(post) => !post.data.draft && post.data.pubDate <= now,
-	);
+	const posts = await getCollection("blog");
 
 	return posts.map((post) => ({
 		params: { slug: post.id },
