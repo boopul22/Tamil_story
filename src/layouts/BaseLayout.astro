@@ -8,6 +8,7 @@ import {
     SITE_LOCALE,
     SITE_THEME_COLOR,
 } from "../consts";
+import Analytics from "@vercel/analytics/astro";
 import ThemeManager from "../components/ThemeManager.astro";
 
 interface Props {
@@ -114,6 +115,7 @@ const schema = JSON.stringify({
             />
         </noscript>
         <script type="application/ld+json" set:html={schema} />
+        <Analytics />
         <slot name="head" />
         <ThemeManager />
     </head>
