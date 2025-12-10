@@ -11,6 +11,11 @@ export default defineConfig({
   site: 'https://tamilkathai.in',
   integrations: [mdx(), sitemap()],
 
+  build: {
+    // Inline all CSS to eliminate render-blocking requests
+    inlineStylesheets: 'always',
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },
